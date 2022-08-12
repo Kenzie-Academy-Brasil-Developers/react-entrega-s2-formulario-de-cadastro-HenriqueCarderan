@@ -4,7 +4,6 @@ import { DashboardContainer } from "./style";
 
 const Dashboard = ({ user }) => {
   const handleLogout = () => {
-    console.log("entrou");
     window.localStorage.clear();
   };
   return (

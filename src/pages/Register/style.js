@@ -130,4 +130,10 @@ export const RegisterContainer = styled.div`
 
     color: #ffffff;
   }
+
+  span {
+    font-weight: 400;
+    font-size: 9.772px;
+    color: var(--color-gray-0);
+  }
 `;

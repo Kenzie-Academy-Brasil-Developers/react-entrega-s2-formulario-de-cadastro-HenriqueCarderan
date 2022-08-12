@@ -35,37 +35,37 @@ const Register = () => {
           </div>
           <div className="formContainer">
             <h3>Crie sua conta</h3>
-            <p>Rápido e gratís, vamos nessa</p>
+            <p>Rápido e grátis, vamos nessa</p>
             <form onSubmit={handleSubmit(onSubmitRegister)}>
               <label>Nome</label>
               <input placeholder="Digite seu nome aqui" {...register("name")} />
-              {errors.name?.message}
+              <span>{errors.name?.message}</span>
               <label>Email</label>
               <input
                 placeholder="Digite seu email aqui"
                 {...register("email")}
               />
-              {errors.email?.message}
+              <span>{errors.email?.message}</span>
               <label>Senha</label>
               <input
                 type="password"
                 placeholder="Digite aqui sua senha"
                 {...register("password")}
               />
-              {errors.password?.message}
+              <span>{errors.password?.message}</span>
               <label>Confirmar senha</label>
               <input
                 type="password"
                 placeholder="Confirme sua senha"
                 {...register("confirmPassword")}
               />
-              {errors.confirmPassword?.message}
+              <span>{errors.confirmPassword?.message}</span>
               <label>Bio</label>
               <input placeholder="Fale sobre você" {...register("bio")} />
-              {errors.bio?.message}
+              <span>{errors.bio?.message}</span>
               <label>Contato</label>
               <input placeholder="Opçõe de contato" {...register("contact")} />
-              {errors.contact?.message}
+              <span>{errors.contact?.message}</span>
               <label>Selecionar módulo</label>
               <select {...register("course_module")}>
                 <option></option>
@@ -82,7 +82,7 @@ const Register = () => {
                   Quarto módulo (Backend Avançado)
                 </option>
               </select>
-              {errors.course_module?.message}
+              <span>{errors.course_module?.message}</span>
               <button type="submit">Cadastrar</button>
             </form>
           </div>

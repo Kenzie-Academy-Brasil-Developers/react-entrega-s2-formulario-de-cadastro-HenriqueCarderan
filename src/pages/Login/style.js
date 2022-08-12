@@ -52,6 +52,12 @@ export const LoginContainer = styled.div`
     border: 1.2182px solid var(--color-gray-0);
   }
 
+  span {
+    font-weight: 400;
+    font-size: 9.772px;
+    color: var(--color-gray-0);
+  }
+
   .formContainer .label {
     text-align: start;
     padding: 10px 0px;

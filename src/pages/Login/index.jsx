@@ -49,14 +49,14 @@ const Login = ({ setUser }) => {
                 placeholder="Digite seu email aqui"
                 {...register("email")}
               />
-              {errors.email?.message}
+              <span>{errors.email?.message}</span>
               <label className="label">Senha</label>
               <input
                 type="password"
                 placeholder="Digite sua senha aqui"
                 {...register("password")}
               />
-              {errors.password?.message}
+              <span>{errors.password?.message}</span>
               <button type="submit">Entrar</button>
               <p>Ainda não possui uma conta?</p>
               <Link to="/register">Cadastre-se</Link>
