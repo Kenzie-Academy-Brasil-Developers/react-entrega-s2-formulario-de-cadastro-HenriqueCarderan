@@ -1,12 +1,17 @@
-import { Link, useHistory } from "react-router-dom";
-import Logo from "../../images/Logo.png";
-import { RegisterContainer } from "./style";
+import { Link } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../services/api";
 import { registerSchema } from "../../validators/registerUser";
 
+import { RegisterContainer } from "./style";
+import Logo from "../../images/Logo.png";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
 const Register = () => {
+  const { onSubmitRegister } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -14,16 +19,6 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
-
-  const history = useHistory();
-
-  const onSubmitRegister = (data) => {
-    delete data.confirmPassword;
-    api
-      .post("/users", data)
-      .then((response) => history.push("/"))
-      .catch((err) => console.log(err));
-  };
 
   return (
     <RegisterContainer>

@@ -17,6 +17,8 @@ export const LoginContainer = styled.div`
     padding: 33.6911px 17.6477px;
     gap: 17.65px;
     margin: auto;
+    width: 88vw;
+    max-width: 370px;
 
     background: var(--color-gray-3);
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
@@ -34,14 +36,16 @@ export const LoginContainer = styled.div`
   .formContainer form {
     display: flex;
     flex-direction: column;
+    width: 76vw;
+    max-width: 330px;
   }
 
   .formContainer input {
     padding: 0px 13.0293px;
     gap: 8.14px;
-    min-width: 264.66px;
     height: 38.5px;
 
+    color: var(--color-gray-0);
     background: var(--color-gray-2);
 
     border: 1.2182px solid var(--color-gray-2);
@@ -72,7 +76,6 @@ export const LoginContainer = styled.div`
     gap: 10.15px;
     margin-top: 20px;
 
-    min-width: 259.9px;
     min-height: 38.5px;
 
     background: var(--color-primary);
@@ -111,7 +114,6 @@ export const LoginContainer = styled.div`
     padding: 0px 22.3336px;
     gap: 10.15px;
 
-    min-width: 259.9px;
     min-height: 38.5px;
 
     background: var(--color-gray-1);
@@ -131,8 +133,5 @@ export const LoginContainer = styled.div`
     background: var(--color-gray-2);
     border: 1.2182px solid var(--color-gray-2);
     border-radius: 4px;
-  }
-
-  @media (min-width: 1300px) {
   }
 `;

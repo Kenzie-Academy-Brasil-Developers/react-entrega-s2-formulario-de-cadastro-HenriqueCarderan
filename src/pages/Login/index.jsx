@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import { LoginContainer } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import api from "../../services/api";
 import { loginSchema } from "../../validators/loginUser";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
-const Login = ({ setUser }) => {
-  const [Loading, setLoading] = useState(false);
-  const history = useHistory();
+const Login = () => {
+  const { onSubmitLogin } = useContext(UserContext);
 
   const {
     register,
@@ -19,20 +17,6 @@ const Login = ({ setUser }) => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
-
-  const onSubmitLogin = (data) => {
-    api
-      .post("/sessions", data)
-      .then((res) => {
-        window.localStorage.clear();
-        window.localStorage.setItem("@TOKEN", res.data.token);
-        window.localStorage.setItem("@USERID", res.data.user.id);
-        setUser(res.data.user);
-        setLoading(true);
-        history.push("/users/res.data.user.id");
-      })
-      .catch((err) => console.log(err.response.data.message));
-  };
 
   return (
     <LoginContainer>

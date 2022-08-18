@@ -2,21 +2,18 @@ import { Route, Switch } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-import { useState } from "react";
 
 const RoutesMain = () => {
-  const [user, setUser] = useState({});
-
   return (
     <Switch>
       <Route exact path="/">
-        <Login setUser={setUser} />
+        <Login />
       </Route>
       <Route exact path="/register">
-        <Register></Register>
+        <Register />
       </Route>
-      <Route exact path="/users/:user_id">
-        <Dashboard user={user}></Dashboard>
+      <Route exact path="/users/dashboard">
+        <Dashboard></Dashboard>
       </Route>
     </Switch>
   );

@@ -46,7 +46,9 @@ export default createGlobalStyle`
   }
 
   button {
-    cursor: pointer;
+  cursor: pointer;
+  border: none;
+  background: transparent;
   }
 
   img {
@@ -61,6 +63,7 @@ export default createGlobalStyle`
   .flexGrid {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   /* Track */
