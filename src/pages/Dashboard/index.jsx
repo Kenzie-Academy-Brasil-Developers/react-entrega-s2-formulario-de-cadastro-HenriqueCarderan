@@ -57,16 +57,20 @@ const Dashboard = () => {
                     </button>
                   </div>
                   <ul>
-                    {techs?.map((tech) => {
-                      return (
-                        <li key={tech.id} onClick={() => eventModal(tech)}>
-                          <div>
-                            <h4>{tech.title}</h4>
-                            <p>{tech.status}</p>
-                          </div>
-                        </li>
-                      );
-                    })}
+                    {techs.length !== 0 ? (
+                      techs.map((tech) => {
+                        return (
+                          <li key={tech.id} onClick={() => eventModal(tech)}>
+                            <div>
+                              <h4>{tech.title}</h4>
+                              <p>{tech.status}</p>
+                            </div>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <h4>Nenhuma tecnologia criada! Adicione clicando no +</h4>
+                    )}
                   </ul>
                 </div>
               </div>

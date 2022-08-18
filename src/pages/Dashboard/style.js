@@ -133,6 +133,7 @@ export const DashboardContainer = styled.div`
   }
 
   li:hover {
+    cursor: pointer;
     background: var(--color-gray-2);
   }
 

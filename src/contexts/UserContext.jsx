@@ -8,7 +8,7 @@ export const UserContext = createContext({});
 function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [Loading, setLoading] = useState(false);
-  const [techs, setTechs] = useState([]);
+  const [techs, setTechs] = useState();
 
   const history = useHistory();
 
