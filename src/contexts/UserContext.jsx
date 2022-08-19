@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { useHistory } from "react-router-dom";
+import { ToastContext } from "./ToastContext";
 
 export const UserContext = createContext({});
 
 function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [Loading, setLoading] = useState(false);
   const [techs, setTechs] = useState();
-
   const history = useHistory();
+  const { addToast } = useContext(ToastContext);
 
   useEffect(() => {
     if (window.localStorage.getItem("@TOKEN")) {
@@ -41,18 +41,40 @@ function UserProvider({ children }) {
         window.localStorage.setItem("@USERID", res.data.user.id);
         setUser(res.data.user);
         setTechs(res.data.user.techs);
-        setLoading(true);
+        addToast({
+          type: "success",
+          title: "Login realizado com sucesso",
+          description: "Você será direcionado para dashboard",
+        });
         history.push("/users/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        addToast({
+          type: "error",
+          title: "Email ou senha incorretos",
+        });
+        console.log(err);
+      });
   };
 
   const onSubmitRegister = (data) => {
     delete data.confirmPassword;
     api
       .post("/users", data)
-      .then(() => history.push("/"))
-      .catch((err) => console.log(err));
+      .then(() => {
+        addToast({
+          type: "success",
+          title: "Cadastro realizado com sucesso",
+          description: "Você será direcionado para área de login",
+        });
+        history.push("/");
+      })
+      .catch((err) =>
+        addToast({
+          type: "error",
+          title: "Email já cadastrado",
+        })
+      );
   };
 
   const handleLogout = () => {
@@ -62,8 +84,6 @@ function UserProvider({ children }) {
   return (
     <UserContext.Provider
       value={{
-        Loading,
-        setLoading,
         onSubmitLogin,
         user,
         setUser,

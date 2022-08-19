@@ -1,17 +1,17 @@
 import { createContext, useContext, useState } from "react";
 import api from "../services/api";
+import { ToastContext } from "./ToastContext";
 import { UserContext } from "./UserContext";
 
 export const TechContext = createContext({});
 
 function TechProvider({ children }) {
   const { techs, setTechs } = useContext(UserContext);
-
+  const { addToast } = useContext(ToastContext);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [techId, setTechId] = useState("");
   const [techName, setTechName] = useState("");
-  const [techStatus, setTechStatus] = useState("");
 
   const onSubmitTech = (data) => {
     api
@@ -22,9 +22,18 @@ function TechProvider({ children }) {
       })
       .then((res) => {
         setTechs([...techs, res.data]);
+        addToast({
+          type: "info",
+          title: "Tecnologia adicionada com sucesso",
+        });
         setAddModal(false);
       })
-      .catch((err) => console.log(err.response.data.message));
+      .catch((err) =>
+        addToast({
+          type: "error",
+          title: "Usuário já possui a tecnologia",
+        })
+      );
   };
 
   const onSubmitEdit = (data) => {
@@ -39,6 +48,10 @@ function TechProvider({ children }) {
         const [techEdit] = techs.filter((tech) => tech.id === techId);
         techEdit.status = res.data.status;
         setTechs([...techsEdit, techEdit]);
+        addToast({
+          type: "info",
+          title: "Tecnologia editada com sucesso",
+        });
         setEditModal(false);
       })
       .catch((err) => console.log(err.response.data.message));
@@ -54,6 +67,10 @@ function TechProvider({ children }) {
       .then(() => {
         const techsDelete = techs.filter((tech) => tech.id !== techId);
         setTechs(techsDelete);
+        addToast({
+          type: "info",
+          title: "Tecnologia removida com sucesso",
+        });
         setEditModal(false);
       })
       .catch((err) => console.log(err.response.data.message));
@@ -73,7 +90,6 @@ function TechProvider({ children }) {
         setTechId,
         techName,
         setTechName,
-        setTechStatus,
       }}
     >
       {children}

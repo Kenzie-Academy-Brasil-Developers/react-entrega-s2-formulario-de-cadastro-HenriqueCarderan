@@ -1,4 +1,5 @@
 import "./App.css";
+import ToastContainer from "./components/ToastContainer";
 import RoutesMain from "./routes";
 import Global from "./styles/global";
 
@@ -7,6 +8,7 @@ function App() {
     <div>
       <Global />
       <RoutesMain />
+      <ToastContainer />
     </div>
   );
 }
