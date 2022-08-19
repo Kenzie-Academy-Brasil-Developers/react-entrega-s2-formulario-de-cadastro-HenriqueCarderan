@@ -13,22 +13,23 @@ function UserProvider({ children }) {
   const history = useHistory();
 
   useEffect(() => {
-    api
-      .get("/profile", {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("@TOKEN")}`,
-        },
-      })
-      .then((res) => {
-        setUser(res.data);
-        setTechs(res.data.techs);
-        history.push("/users/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        window.localStorage.clear();
-        history.push("/");
-      });
+    if (window.localStorage.getItem("@TOKEN")) {
+      api
+        .get("/profile", {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("@TOKEN")}`,
+          },
+        })
+        .then((res) => {
+          setUser(res.data);
+          setTechs(res.data.techs);
+          history.push("/users/dashboard");
+        })
+        .catch((err) => {
+          window.localStorage.clear();
+          history.push("/");
+        });
+    }
   }, []);
 
   const onSubmitLogin = (data) => {
